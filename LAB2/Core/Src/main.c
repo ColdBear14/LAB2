@@ -193,23 +193,41 @@ int main(void) {
 		/* USER CODE END WHILE */
 		if (timer1_flag == 1) {
 			HAL_GPIO_TogglePin(PA5_GPIO_Port, PA5_Pin);
+			HAL_GPIO_TogglePin(PA4_GPIO_Port, PA4_Pin);
 			setTimer1(100);
 		}
 		if (timer2_flag == 1) {
+			HAL_GPIO_WritePin(PA6_GPIO_Port, PA6_Pin, SET);
+			HAL_GPIO_WritePin(PA7_GPIO_Port, PA7_Pin, SET);
+			HAL_GPIO_WritePin(PA8_GPIO_Port, PA8_Pin, SET);
+			HAL_GPIO_WritePin(PA9_GPIO_Port, PA9_Pin, SET);
 
 			switch (led_status) {
 			case 0: {
 				HAL_GPIO_WritePin(PA6_GPIO_Port, PA6_Pin, RESET);
-				HAL_GPIO_WritePin(PA7_GPIO_Port, PA7_Pin, SET);
 				display7SEG(1);
 				led_status = 1;
 				setTimer2(50);
 				break;
 			}
 			case 1: {
-				HAL_GPIO_WritePin(PA6_GPIO_Port, PA6_Pin, SET);
 				HAL_GPIO_WritePin(PA7_GPIO_Port, PA7_Pin, RESET);
+
 				display7SEG(2);
+				led_status = 2;
+				setTimer2(50);
+				break;
+			}
+			case 2: {
+				HAL_GPIO_WritePin(PA8_GPIO_Port, PA8_Pin, RESET);
+				display7SEG(3);
+				led_status = 3;
+				setTimer2(50);
+				break;
+			}
+			case 3: {
+				HAL_GPIO_WritePin(PA9_GPIO_Port, PA9_Pin, RESET);
+				display7SEG(0);
 				led_status = 0;
 				setTimer2(50);
 				break;
@@ -222,137 +240,143 @@ int main(void) {
 		/* USER CODE END 3 */
 	}
 }
-/**
- * @brief System Clock Configuration
- * @retval None
- */
-void SystemClock_Config(void) {
-	RCC_OscInitTypeDef RCC_OscInitStruct = { 0 };
-	RCC_ClkInitTypeDef RCC_ClkInitStruct = { 0 };
 
-	/** Initializes the RCC Oscillators according to the specified parameters
-	 * in the RCC_OscInitTypeDef structure.
+	/**
+	 * @brief System Clock Configuration
+	 * @retval None
 	 */
-	RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
-	RCC_OscInitStruct.HSIState = RCC_HSI_ON;
-	RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
-	RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
-	if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK) {
-		Error_Handler();
+	void SystemClock_Config(void) {
+		RCC_OscInitTypeDef RCC_OscInitStruct = { 0 };
+		RCC_ClkInitTypeDef RCC_ClkInitStruct = { 0 };
+
+		/** Initializes the RCC Oscillators according to the specified parameters
+		 * in the RCC_OscInitTypeDef structure.
+		 */
+		RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
+		RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+		RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
+		RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
+		if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK) {
+			Error_Handler();
+		}
+		/** Initializes the CPU, AHB and APB buses clocks
+		 */
+		RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_SYSCLK
+				| RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2;
+		RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSI;
+		RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+		RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
+		RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+
+		if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0)
+				!= HAL_OK) {
+			Error_Handler();
+		}
 	}
-	/** Initializes the CPU, AHB and APB buses clocks
+
+	/**
+	 * @brief TIM2 Initialization Function
+	 * @param None
+	 * @retval None
 	 */
-	RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_SYSCLK
-			| RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2;
-	RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSI;
-	RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-	RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
-	RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+	static void MX_TIM2_Init(void) {
 
-	if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK) {
-		Error_Handler();
+		/* USER CODE BEGIN TIM2_Init 0 */
+
+		/* USER CODE END TIM2_Init 0 */
+
+		TIM_ClockConfigTypeDef sClockSourceConfig = { 0 };
+		TIM_MasterConfigTypeDef sMasterConfig = { 0 };
+
+		/* USER CODE BEGIN TIM2_Init 1 */
+
+		/* USER CODE END TIM2_Init 1 */
+		htim2.Instance = TIM2;
+		htim2.Init.Prescaler = 7999;
+		htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
+		htim2.Init.Period = 9;
+		htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+		htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+		if (HAL_TIM_Base_Init(&htim2) != HAL_OK) {
+			Error_Handler();
+		}
+		sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+		if (HAL_TIM_ConfigClockSource(&htim2, &sClockSourceConfig) != HAL_OK) {
+			Error_Handler();
+		}
+		sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+		sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+		if (HAL_TIMEx_MasterConfigSynchronization(&htim2, &sMasterConfig)
+				!= HAL_OK) {
+			Error_Handler();
+		}
+		/* USER CODE BEGIN TIM2_Init 2 */
+
+		/* USER CODE END TIM2_Init 2 */
+
 	}
-}
 
-/**
- * @brief TIM2 Initialization Function
- * @param None
- * @retval None
- */
-static void MX_TIM2_Init(void) {
+	/**
+	 * @brief GPIO Initialization Function
+	 * @param None
+	 * @retval None
+	 */
+	static void MX_GPIO_Init(void) {
+		GPIO_InitTypeDef GPIO_InitStruct = { 0 };
 
-	/* USER CODE BEGIN TIM2_Init 0 */
+		/* GPIO Ports Clock Enable */
+		__HAL_RCC_GPIOA_CLK_ENABLE();
+		__HAL_RCC_GPIOB_CLK_ENABLE();
 
-	/* USER CODE END TIM2_Init 0 */
+		/*Configure GPIO pin Output Level */
+		HAL_GPIO_WritePin(GPIOA,
+				PA4_Pin | PA5_Pin | PA6_Pin | PA7_Pin | PA8_Pin | PA9_Pin,
+				GPIO_PIN_RESET);
 
-	TIM_ClockConfigTypeDef sClockSourceConfig = { 0 };
-	TIM_MasterConfigTypeDef sMasterConfig = { 0 };
+		/*Configure GPIO pin Output Level */
+		HAL_GPIO_WritePin(GPIOB,
+				PB0_Pin | PB1_Pin | PB2_Pin | PB3_Pin | PB4_Pin | PB5_Pin
+						| PB6_Pin, GPIO_PIN_RESET);
 
-	/* USER CODE BEGIN TIM2_Init 1 */
+		/*Configure GPIO pins : PA4_Pin PA5_Pin PA6_Pin PA7_Pin
+		 PA8_Pin PA9_Pin */
+		GPIO_InitStruct.Pin = PA4_Pin | PA5_Pin | PA6_Pin | PA7_Pin | PA8_Pin
+				| PA9_Pin;
+		GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+		GPIO_InitStruct.Pull = GPIO_NOPULL;
+		GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+		HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-	/* USER CODE END TIM2_Init 1 */
-	htim2.Instance = TIM2;
-	htim2.Init.Prescaler = 7999;
-	htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
-	htim2.Init.Period = 9;
-	htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
-	htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
-	if (HAL_TIM_Base_Init(&htim2) != HAL_OK) {
-		Error_Handler();
+		/*Configure GPIO pins : PB0_Pin PB1_Pin PB2_Pin PB3_Pin
+		 PB4_Pin PB5_Pin PB6_Pin */
+		GPIO_InitStruct.Pin = PB0_Pin | PB1_Pin | PB2_Pin | PB3_Pin | PB4_Pin
+				| PB5_Pin | PB6_Pin;
+		GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+		GPIO_InitStruct.Pull = GPIO_NOPULL;
+		GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+		HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
 	}
-	sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
-	if (HAL_TIM_ConfigClockSource(&htim2, &sClockSourceConfig) != HAL_OK) {
-		Error_Handler();
+
+	/* USER CODE BEGIN 4 */
+	void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
+		timerRun();
 	}
-	sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
-	sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
-	if (HAL_TIMEx_MasterConfigSynchronization(&htim2, &sMasterConfig)
-			!= HAL_OK) {
-		Error_Handler();
+
+	/* USER CODE END 4 */
+
+	/**
+	 * @brief  This function is executed in case of error occurrence.
+	 * @retval None
+	 */
+	void Error_Handler(void) {
+		/* USER CODE BEGIN Error_Handler_Debug */
+		/* User can add his own implementation to report the HAL error return state */
+		__disable_irq();
+		while (1) {
+		}
+		/* USER CODE END Error_Handler_Debug */
 	}
-	/* USER CODE BEGIN TIM2_Init 2 */
-
-	/* USER CODE END TIM2_Init 2 */
-
-}
-
-/**
- * @brief GPIO Initialization Function
- * @param None
- * @retval None
- */
-static void MX_GPIO_Init(void) {
-	GPIO_InitTypeDef GPIO_InitStruct = { 0 };
-
-	/* GPIO Ports Clock Enable */
-	__HAL_RCC_GPIOA_CLK_ENABLE();
-	__HAL_RCC_GPIOB_CLK_ENABLE();
-
-	/*Configure GPIO pin Output Level */
-	HAL_GPIO_WritePin(GPIOA, PA5_Pin | PA6_Pin | PA7_Pin, GPIO_PIN_RESET);
-
-	/*Configure GPIO pin Output Level */
-	HAL_GPIO_WritePin(GPIOB,
-	PB0_Pin | PB1_Pin | PB2_Pin | PB3_Pin | PB4_Pin | PB5_Pin | PB6_Pin,
-			GPIO_PIN_RESET);
-
-	/*Configure GPIO pins : PA5_Pin PA6_Pin PA7_Pin */
-	GPIO_InitStruct.Pin = PA5_Pin | PA6_Pin | PA7_Pin;
-	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-	GPIO_InitStruct.Pull = GPIO_NOPULL;
-	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-	HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-
-	/*Configure GPIO pins : PB0_Pin PB1_Pin PB2_Pin PB3_Pin
-	 PB4_Pin PB5_Pin PB6_Pin */
-	GPIO_InitStruct.Pin = PB0_Pin | PB1_Pin | PB2_Pin | PB3_Pin | PB4_Pin
-			| PB5_Pin | PB6_Pin;
-	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-	GPIO_InitStruct.Pull = GPIO_NOPULL;
-	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-	HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
-
-}
-
-/* USER CODE BEGIN 4 */
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
-	timerRun();
-}
-
-/* USER CODE END 4 */
-
-/**
- * @brief  This function is executed in case of error occurrence.
- * @retval None
- */
-void Error_Handler(void) {
-	/* USER CODE BEGIN Error_Handler_Debug */
-	/* User can add his own implementation to report the HAL error return state */
-	__disable_irq();
-	while (1) {
-	}
-	/* USER CODE END Error_Handler_Debug */
-}
 
 #ifdef  USE_FULL_ASSERT
 /**
@@ -371,4 +395,4 @@ void assert_failed(uint8_t *file, uint32_t line)
 }
 #endif /* USE_FULL_ASSERT */
 
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+	/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
