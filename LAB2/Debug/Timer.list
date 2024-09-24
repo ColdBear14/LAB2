@@ -738,12 +738,13 @@ int main(void) {
  80005e2:	4b07      	ldr	r3, [pc, #28]	; (8000600 <main+0x90>)
  80005e4:	2200      	movs	r2, #0
  80005e6:	601a      	str	r2, [r3, #0]
-			setTimer(1,500);
- 80005e8:	f44f 71fa 	mov.w	r1, #500	; 0x1f4
- 80005ec:	2001      	movs	r0, #1
- 80005ee:	f000 f8f5 	bl	80007dc <setTimer>
+			setTimer(1,250);
+ 80005e8:	21fa      	movs	r1, #250	; 0xfa
+ 80005ea:	2001      	movs	r0, #1
+ 80005ec:	f000 f8f6 	bl	80007dc <setTimer>
 		if (timer_flag[0] == 1) {
- 80005f2:	e7d4      	b.n	800059e <main+0x2e>
+ 80005f0:	e7d5      	b.n	800059e <main+0x2e>
+ 80005f2:	bf00      	nop
  80005f4:	2000003c 	.word	0x2000003c
  80005f8:	200000ac 	.word	0x200000ac
  80005fc:	40010800 	.word	0x40010800

@@ -243,7 +243,7 @@ int main(void) {
 		if (timer_flag[1] == 1) {
 			update7SEG(index_led++);
 			if(index_led == MAX_LED) index_led=0;
-			setTimer(1,500);
+			setTimer(1,250);
 			/* USER CODE BEGIN 3 */
 		}
 		/* USER CODE END 3 */
