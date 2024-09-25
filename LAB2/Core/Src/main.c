@@ -203,7 +203,6 @@ int main(void) {
 				HAL_GPIO_WritePin(PA7_GPIO_Port, PA7_Pin, SET);
 				display7SEG(1);
 				led_status = 1;
-				setTimer2(50);
 				break;
 			}
 			case 1: {
@@ -211,12 +210,13 @@ int main(void) {
 				HAL_GPIO_WritePin(PA7_GPIO_Port, PA7_Pin, RESET);
 				display7SEG(2);
 				led_status = 0;
-				setTimer2(50);
+
 				break;
 			}
 			default:
 				break;
 			}
+			setTimer2(50);
 			/* USER CODE BEGIN 3 */
 		}
 		/* USER CODE END 3 */
