@@ -58,6 +58,10 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define PA2_Pin GPIO_PIN_2
+#define PA2_GPIO_Port GPIOA
+#define PA3_Pin GPIO_PIN_3
+#define PA3_GPIO_Port GPIOA
 #define PA4_Pin GPIO_PIN_4
 #define PA4_GPIO_Port GPIOA
 #define PA5_Pin GPIO_PIN_5
@@ -72,10 +76,34 @@ void Error_Handler(void);
 #define PB1_GPIO_Port GPIOB
 #define PB2_Pin GPIO_PIN_2
 #define PB2_GPIO_Port GPIOB
+#define PB10_Pin GPIO_PIN_10
+#define PB10_GPIO_Port GPIOB
+#define PB11_Pin GPIO_PIN_11
+#define PB11_GPIO_Port GPIOB
+#define PB12_Pin GPIO_PIN_12
+#define PB12_GPIO_Port GPIOB
+#define PB13_Pin GPIO_PIN_13
+#define PB13_GPIO_Port GPIOB
+#define PB14_Pin GPIO_PIN_14
+#define PB14_GPIO_Port GPIOB
+#define PB15_Pin GPIO_PIN_15
+#define PB15_GPIO_Port GPIOB
 #define PA8_Pin GPIO_PIN_8
 #define PA8_GPIO_Port GPIOA
 #define PA9_Pin GPIO_PIN_9
 #define PA9_GPIO_Port GPIOA
+#define PA10_Pin GPIO_PIN_10
+#define PA10_GPIO_Port GPIOA
+#define PA11_Pin GPIO_PIN_11
+#define PA11_GPIO_Port GPIOA
+#define PA12_Pin GPIO_PIN_12
+#define PA12_GPIO_Port GPIOA
+#define PA13_Pin GPIO_PIN_13
+#define PA13_GPIO_Port GPIOA
+#define PA14_Pin GPIO_PIN_14
+#define PA14_GPIO_Port GPIOA
+#define PA15_Pin GPIO_PIN_15
+#define PA15_GPIO_Port GPIOA
 #define PB3_Pin GPIO_PIN_3
 #define PB3_GPIO_Port GPIOB
 #define PB4_Pin GPIO_PIN_4
@@ -84,6 +112,10 @@ void Error_Handler(void);
 #define PB5_GPIO_Port GPIOB
 #define PB6_Pin GPIO_PIN_6
 #define PB6_GPIO_Port GPIOB
+#define PB8_Pin GPIO_PIN_8
+#define PB8_GPIO_Port GPIOB
+#define PB9_Pin GPIO_PIN_9
+#define PB9_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

@@ -1,4 +1,5 @@
-Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
+Core/Src/control_7SEG.o: ../Core/Src/control_7SEG.c \
+ ../Core/Inc/control_7SEG.h ../Core/Inc/main.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h \
  ../Core/Inc/stm32f1xx_hal_conf.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h \
@@ -23,9 +24,9 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h \
- ../Core/Inc/software_timer.h ../Core/Inc/clock_buffer.h \
- ../Core/Inc/control_7SEG.h ../Core/Inc/global.h \
- ../Core/Inc/control_matrix.h ../Core/Inc/main.h
+ ../Core/Inc/clock_buffer.h
+
+../Core/Inc/control_7SEG.h:
 
 ../Core/Inc/main.h:
 
@@ -77,14 +78,4 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h:
 
-../Core/Inc/software_timer.h:
-
 ../Core/Inc/clock_buffer.h:
-
-../Core/Inc/control_7SEG.h:
-
-../Core/Inc/global.h:
-
-../Core/Inc/control_matrix.h:
-
-../Core/Inc/main.h:
