@@ -9,8 +9,7 @@
 #include "main.h"
 
 int index_led_matrix = 0;
-uint8_t matrix_buffer[8] = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08
- };
+uint8_t matrix_buffer[8] = {0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08};
 
 void displayMatrix(int row, int col) {
     int shift = 1;
@@ -24,21 +23,14 @@ void displayMatrix(int row, int col) {
         HAL_GPIO_WritePin(PB14_GPIO_Port, PB14_Pin, GPIO_PIN_SET);
         HAL_GPIO_WritePin(PB15_GPIO_Port, PB15_Pin, GPIO_PIN_SET);
 
-        HAL_GPIO_WritePin(PA10_GPIO_Port, PA10_Pin, 1 - (col & shift));
-        col = col >> 1;
-        HAL_GPIO_WritePin(PA11_GPIO_Port, PA11_Pin, 1 - (col & shift));
-        col = col >> 1;
-        HAL_GPIO_WritePin(PA12_GPIO_Port, PA12_Pin, 1 - (col & shift));
-        col = col >> 1;
-        HAL_GPIO_WritePin(PA13_GPIO_Port, PA13_Pin, 1 - (col & shift));
-        col = col >> 1;
-        HAL_GPIO_WritePin(PA14_GPIO_Port, PA14_Pin, 1 - (col & shift));
-        col = col >> 1;
-        HAL_GPIO_WritePin(PA15_GPIO_Port, PA15_Pin, 1 - (col & shift));
-        col = col >> 1;
-        HAL_GPIO_WritePin(PA2_GPIO_Port, PA2_Pin, 1 - (col & shift));
-        col = col >> 1;
-        HAL_GPIO_WritePin(PA3_GPIO_Port, PA3_Pin, 1 - (col & shift));
+        HAL_GPIO_WritePin(PA2_GPIO_Port, PA2_Pin, SET);
+        HAL_GPIO_WritePin(PA3_GPIO_Port, PA3_Pin, SET);
+        HAL_GPIO_WritePin(PA10_GPIO_Port, PA10_Pin, RESET);
+        HAL_GPIO_WritePin(PA11_GPIO_Port, PA11_Pin, RESET);
+        HAL_GPIO_WritePin(PA12_GPIO_Port, PA12_Pin, RESET);
+        HAL_GPIO_WritePin(PA13_GPIO_Port, PA13_Pin, RESET);
+        HAL_GPIO_WritePin(PA14_GPIO_Port, PA14_Pin, SET);
+        HAL_GPIO_WritePin(PA15_GPIO_Port, PA15_Pin, SET);
     }
 
     if (row == 1) {
@@ -51,21 +43,14 @@ void displayMatrix(int row, int col) {
         HAL_GPIO_WritePin(PB14_GPIO_Port, PB14_Pin, GPIO_PIN_SET);
         HAL_GPIO_WritePin(PB15_GPIO_Port, PB15_Pin, GPIO_PIN_SET);
 
-        HAL_GPIO_WritePin(PA10_GPIO_Port, PA10_Pin, 1 - (col & shift));
-        col = col >> 1;
-        HAL_GPIO_WritePin(PA11_GPIO_Port, PA11_Pin, 1 - (col & shift));
-        col = col >> 1;
-        HAL_GPIO_WritePin(PA12_GPIO_Port, PA12_Pin, 1 - (col & shift));
-        col = col >> 1;
-        HAL_GPIO_WritePin(PA13_GPIO_Port, PA13_Pin, 1 - (col & shift));
-        col = col >> 1;
-        HAL_GPIO_WritePin(PA14_GPIO_Port, PA14_Pin, 1 - (col & shift));
-        col = col >> 1;
-        HAL_GPIO_WritePin(PA15_GPIO_Port, PA15_Pin, 1 - (col & shift));
-        col = col >> 1;
-        HAL_GPIO_WritePin(PA2_GPIO_Port, PA2_Pin, 1 - (col & shift));
-        col = col >> 1;
-        HAL_GPIO_WritePin(PA3_GPIO_Port, PA3_Pin, 1 - (col & shift));
+        HAL_GPIO_WritePin(PA2_GPIO_Port, PA2_Pin, SET);
+        HAL_GPIO_WritePin(PA3_GPIO_Port, PA3_Pin, RESET);
+        HAL_GPIO_WritePin(PA10_GPIO_Port, PA10_Pin, RESET);
+        HAL_GPIO_WritePin(PA11_GPIO_Port, PA11_Pin, RESET);
+        HAL_GPIO_WritePin(PA12_GPIO_Port, PA12_Pin, RESET);
+        HAL_GPIO_WritePin(PA13_GPIO_Port, PA13_Pin, RESET);
+        HAL_GPIO_WritePin(PA14_GPIO_Port, PA14_Pin, RESET);
+        HAL_GPIO_WritePin(PA15_GPIO_Port, PA15_Pin, SET);
     }
 
     if (row == 2) {
@@ -78,21 +63,14 @@ void displayMatrix(int row, int col) {
         HAL_GPIO_WritePin(PB14_GPIO_Port, PB14_Pin, GPIO_PIN_SET);
         HAL_GPIO_WritePin(PB15_GPIO_Port, PB15_Pin, GPIO_PIN_SET);
 
-        HAL_GPIO_WritePin(PA10_GPIO_Port, PA10_Pin, 1 - (col & shift));
-        col = col >> 1;
-        HAL_GPIO_WritePin(PA11_GPIO_Port, PA11_Pin, 1 - (col & shift));
-        col = col >> 1;
-        HAL_GPIO_WritePin(PA12_GPIO_Port, PA12_Pin, 1 - (col & shift));
-        col = col >> 1;
-        HAL_GPIO_WritePin(PA13_GPIO_Port, PA13_Pin, 1 - (col & shift));
-        col = col >> 1;
-        HAL_GPIO_WritePin(PA14_GPIO_Port, PA14_Pin, 1 - (col & shift));
-        col = col >> 1;
-        HAL_GPIO_WritePin(PA15_GPIO_Port, PA15_Pin, 1 - (col & shift));
-        col = col >> 1;
-        HAL_GPIO_WritePin(PA2_GPIO_Port, PA2_Pin, 1 - (col & shift));
-        col = col >> 1;
-        HAL_GPIO_WritePin(PA3_GPIO_Port, PA3_Pin, 1 - (col & shift));
+        HAL_GPIO_WritePin(PA2_GPIO_Port, PA2_Pin, RESET);
+        HAL_GPIO_WritePin(PA3_GPIO_Port, PA3_Pin, RESET);
+        HAL_GPIO_WritePin(PA10_GPIO_Port, PA10_Pin, SET);
+        HAL_GPIO_WritePin(PA11_GPIO_Port, PA11_Pin, SET);
+        HAL_GPIO_WritePin(PA12_GPIO_Port, PA12_Pin, SET);
+        HAL_GPIO_WritePin(PA13_GPIO_Port, PA13_Pin, SET);
+        HAL_GPIO_WritePin(PA14_GPIO_Port, PA14_Pin, RESET);
+        HAL_GPIO_WritePin(PA15_GPIO_Port, PA15_Pin, RESET);
     }
     if (row == 3) {
         HAL_GPIO_WritePin(PB8_GPIO_Port, PB8_Pin, GPIO_PIN_SET);
@@ -104,21 +82,14 @@ void displayMatrix(int row, int col) {
         HAL_GPIO_WritePin(PB14_GPIO_Port, PB14_Pin, GPIO_PIN_SET);
         HAL_GPIO_WritePin(PB15_GPIO_Port, PB15_Pin, GPIO_PIN_SET);
 
-        HAL_GPIO_WritePin(PA10_GPIO_Port, PA10_Pin, 1 - (col & shift));
-        col = col >> 1;
-        HAL_GPIO_WritePin(PA11_GPIO_Port, PA11_Pin, 1 - (col & shift));
-        col = col >> 1;
-        HAL_GPIO_WritePin(PA12_GPIO_Port, PA12_Pin, 1 - (col & shift));
-        col = col >> 1;
-        HAL_GPIO_WritePin(PA13_GPIO_Port, PA13_Pin, 1 - (col & shift));
-        col = col >> 1;
-        HAL_GPIO_WritePin(PA14_GPIO_Port, PA14_Pin, 1 - (col & shift));
-        col = col >> 1;
-        HAL_GPIO_WritePin(PA15_GPIO_Port, PA15_Pin, 1 - (col & shift));
-        col = col >> 1;
-        HAL_GPIO_WritePin(PA2_GPIO_Port, PA2_Pin, 1 - (col & shift));
-        col = col >> 1;
-        HAL_GPIO_WritePin(PA3_GPIO_Port, PA3_Pin, 1 - (col & shift));
+        HAL_GPIO_WritePin(PA2_GPIO_Port, PA2_Pin, RESET);
+        HAL_GPIO_WritePin(PA3_GPIO_Port, PA3_Pin, RESET);
+        HAL_GPIO_WritePin(PA10_GPIO_Port, PA10_Pin, SET);
+        HAL_GPIO_WritePin(PA11_GPIO_Port, PA11_Pin, SET);
+        HAL_GPIO_WritePin(PA12_GPIO_Port, PA12_Pin, SET);
+        HAL_GPIO_WritePin(PA13_GPIO_Port, PA13_Pin, SET);
+        HAL_GPIO_WritePin(PA14_GPIO_Port, PA14_Pin, RESET);
+        HAL_GPIO_WritePin(PA15_GPIO_Port, PA15_Pin, RESET);
     }
     if (row == 4) {
         HAL_GPIO_WritePin(PB8_GPIO_Port, PB8_Pin, GPIO_PIN_SET);
@@ -130,21 +101,14 @@ void displayMatrix(int row, int col) {
         HAL_GPIO_WritePin(PB14_GPIO_Port, PB14_Pin, GPIO_PIN_SET);
         HAL_GPIO_WritePin(PB15_GPIO_Port, PB15_Pin, GPIO_PIN_SET);
 
-        HAL_GPIO_WritePin(PA10_GPIO_Port, PA10_Pin, 1 - (col & shift));
-        col = col >> 1;
-        HAL_GPIO_WritePin(PA11_GPIO_Port, PA11_Pin, 1 - (col & shift));
-        col = col >> 1;
-        HAL_GPIO_WritePin(PA12_GPIO_Port, PA12_Pin, 1 - (col & shift));
-        col = col >> 1;
-        HAL_GPIO_WritePin(PA13_GPIO_Port, PA13_Pin, 1 - (col & shift));
-        col = col >> 1;
-        HAL_GPIO_WritePin(PA14_GPIO_Port, PA14_Pin, 1 - (col & shift));
-        col = col >> 1;
-        HAL_GPIO_WritePin(PA15_GPIO_Port, PA15_Pin, 1 - (col & shift));
-        col = col >> 1;
-        HAL_GPIO_WritePin(PA2_GPIO_Port, PA2_Pin, 1 - (col & shift));
-        col = col >> 1;
-        HAL_GPIO_WritePin(PA3_GPIO_Port, PA3_Pin, 1 - (col & shift));
+        HAL_GPIO_WritePin(PA2_GPIO_Port, PA2_Pin, RESET);
+        HAL_GPIO_WritePin(PA3_GPIO_Port, PA3_Pin, RESET);
+        HAL_GPIO_WritePin(PA10_GPIO_Port, PA10_Pin, RESET);
+        HAL_GPIO_WritePin(PA11_GPIO_Port, PA11_Pin, RESET);
+        HAL_GPIO_WritePin(PA12_GPIO_Port, PA12_Pin, RESET);
+        HAL_GPIO_WritePin(PA13_GPIO_Port, PA13_Pin, RESET);
+        HAL_GPIO_WritePin(PA14_GPIO_Port, PA14_Pin, RESET);
+        HAL_GPIO_WritePin(PA15_GPIO_Port, PA15_Pin, RESET);
     }
     if (row == 5) {
         HAL_GPIO_WritePin(PB8_GPIO_Port, PB8_Pin, GPIO_PIN_SET);
@@ -156,21 +120,14 @@ void displayMatrix(int row, int col) {
         HAL_GPIO_WritePin(PB14_GPIO_Port, PB14_Pin, GPIO_PIN_SET);
         HAL_GPIO_WritePin(PB15_GPIO_Port, PB15_Pin, GPIO_PIN_SET);
 
-        HAL_GPIO_WritePin(PA10_GPIO_Port, PA10_Pin, 1 - (col & shift));
-        col = col >> 1;
-        HAL_GPIO_WritePin(PA11_GPIO_Port, PA11_Pin, 1 - (col & shift));
-        col = col >> 1;
-        HAL_GPIO_WritePin(PA12_GPIO_Port, PA12_Pin, 1 - (col & shift));
-        col = col >> 1;
-        HAL_GPIO_WritePin(PA13_GPIO_Port, PA13_Pin, 1 - (col & shift));
-        col = col >> 1;
-        HAL_GPIO_WritePin(PA14_GPIO_Port, PA14_Pin, 1 - (col & shift));
-        col = col >> 1;
-        HAL_GPIO_WritePin(PA15_GPIO_Port, PA15_Pin, 1 - (col & shift));
-        col = col >> 1;
-        HAL_GPIO_WritePin(PA2_GPIO_Port, PA2_Pin, 1 - (col & shift));
-        col = col >> 1;
-        HAL_GPIO_WritePin(PA3_GPIO_Port, PA3_Pin, 1 - (col & shift));
+        HAL_GPIO_WritePin(PA2_GPIO_Port, PA2_Pin, RESET);
+        HAL_GPIO_WritePin(PA3_GPIO_Port, PA3_Pin, RESET);
+        HAL_GPIO_WritePin(PA10_GPIO_Port, PA10_Pin, RESET);
+        HAL_GPIO_WritePin(PA11_GPIO_Port, PA11_Pin, RESET);
+        HAL_GPIO_WritePin(PA12_GPIO_Port, PA12_Pin, RESET);
+        HAL_GPIO_WritePin(PA13_GPIO_Port, PA13_Pin, RESET);
+        HAL_GPIO_WritePin(PA14_GPIO_Port, PA14_Pin, RESET);
+        HAL_GPIO_WritePin(PA15_GPIO_Port, PA15_Pin, RESET);
     }
     if (row == 6) {
         HAL_GPIO_WritePin(PB8_GPIO_Port, PB8_Pin, GPIO_PIN_SET);
@@ -182,21 +139,14 @@ void displayMatrix(int row, int col) {
         HAL_GPIO_WritePin(PB14_GPIO_Port, PB14_Pin, GPIO_PIN_RESET);
         HAL_GPIO_WritePin(PB15_GPIO_Port, PB15_Pin, GPIO_PIN_SET);
 
-        HAL_GPIO_WritePin(PA10_GPIO_Port, PA10_Pin, 1 - (col & shift));
-        col = col >> 1;
-        HAL_GPIO_WritePin(PA11_GPIO_Port, PA11_Pin, 1 - (col & shift));
-        col = col >> 1;
-        HAL_GPIO_WritePin(PA12_GPIO_Port, PA12_Pin, 1 - (col & shift));
-        col = col >> 1;
-        HAL_GPIO_WritePin(PA13_GPIO_Port, PA13_Pin, 1 - (col & shift));
-        col = col >> 1;
-        HAL_GPIO_WritePin(PA14_GPIO_Port, PA14_Pin, 1 - (col & shift));
-        col = col >> 1;
-        HAL_GPIO_WritePin(PA15_GPIO_Port, PA15_Pin, 1 - (col & shift));
-        col = col >> 1;
-        HAL_GPIO_WritePin(PA2_GPIO_Port, PA2_Pin, 1 - (col & shift));
-        col = col >> 1;
-        HAL_GPIO_WritePin(PA3_GPIO_Port, PA3_Pin, 1 - (col & shift));
+        HAL_GPIO_WritePin(PA2_GPIO_Port, PA2_Pin, RESET);
+        HAL_GPIO_WritePin(PA3_GPIO_Port, PA3_Pin, RESET);
+        HAL_GPIO_WritePin(PA10_GPIO_Port, PA10_Pin, SET);
+        HAL_GPIO_WritePin(PA11_GPIO_Port, PA11_Pin, SET);
+        HAL_GPIO_WritePin(PA12_GPIO_Port, PA12_Pin, SET);
+        HAL_GPIO_WritePin(PA13_GPIO_Port, PA13_Pin, SET);
+        HAL_GPIO_WritePin(PA14_GPIO_Port, PA14_Pin, RESET);
+        HAL_GPIO_WritePin(PA15_GPIO_Port, PA15_Pin, RESET);
     }
     if (row == 7) {
         HAL_GPIO_WritePin(PB8_GPIO_Port, PB8_Pin, GPIO_PIN_SET);
@@ -208,21 +158,14 @@ void displayMatrix(int row, int col) {
         HAL_GPIO_WritePin(PB14_GPIO_Port, PB14_Pin, GPIO_PIN_SET);
         HAL_GPIO_WritePin(PB15_GPIO_Port, PB15_Pin, GPIO_PIN_RESET);
 
-        HAL_GPIO_WritePin(PA10_GPIO_Port, PA10_Pin, 1 - (col & shift));
-        col = col >> 1;
-        HAL_GPIO_WritePin(PA11_GPIO_Port, PA11_Pin, 1 - (col & shift));
-        col = col >> 1;
-        HAL_GPIO_WritePin(PA12_GPIO_Port, PA12_Pin, 1 - (col & shift));
-        col = col >> 1;
-        HAL_GPIO_WritePin(PA13_GPIO_Port, PA13_Pin, 1 - (col & shift));
-        col = col >> 1;
-        HAL_GPIO_WritePin(PA14_GPIO_Port, PA14_Pin, 1 - (col & shift));
-        col = col >> 1;
-        HAL_GPIO_WritePin(PA15_GPIO_Port, PA15_Pin, 1 - (col & shift));
-        col = col >> 1;
-        HAL_GPIO_WritePin(PA2_GPIO_Port, PA2_Pin, 1 - (col & shift));
-        col = col >> 1;
-        HAL_GPIO_WritePin(PA3_GPIO_Port, PA3_Pin, 1 - (col & shift));
+        HAL_GPIO_WritePin(PA2_GPIO_Port, PA2_Pin, RESET);
+        HAL_GPIO_WritePin(PA3_GPIO_Port, PA3_Pin, RESET);
+        HAL_GPIO_WritePin(PA10_GPIO_Port, PA10_Pin, SET);
+        HAL_GPIO_WritePin(PA11_GPIO_Port, PA11_Pin, SET);
+        HAL_GPIO_WritePin(PA12_GPIO_Port, PA12_Pin, SET);
+        HAL_GPIO_WritePin(PA13_GPIO_Port, PA13_Pin, SET);
+        HAL_GPIO_WritePin(PA14_GPIO_Port, PA14_Pin, RESET);
+        HAL_GPIO_WritePin(PA15_GPIO_Port, PA15_Pin, RESET);
     }
 }
 
