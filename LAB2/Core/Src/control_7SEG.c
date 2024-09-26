@@ -4,10 +4,10 @@
  *  Created on: Sep 26, 2024
  *      Author: Hy
  */
-#include "control_7SEG.h"
-#include "main.h"
-#include "clock_buffer.h"
 
+#include <control_7SEG.h>
+#include "main.h"
+#include <clock_buffer.h>
 
 void display7SEG(int num) {
 	if (num == 0) {
@@ -127,7 +127,6 @@ void update7SEG(int index) {
 		HAL_GPIO_WritePin(PA8_GPIO_Port, PA8_Pin, RESET);
 		HAL_GPIO_WritePin(PA6_GPIO_Port, PA6_Pin, SET);
 		HAL_GPIO_WritePin(PA7_GPIO_Port, PA7_Pin, SET);
-
 		HAL_GPIO_WritePin(PA9_GPIO_Port, PA9_Pin, SET);
 		display7SEG(led_buffer[2]);
 		break;
@@ -137,11 +136,9 @@ void update7SEG(int index) {
 		HAL_GPIO_WritePin(PA6_GPIO_Port, PA6_Pin, SET);
 		HAL_GPIO_WritePin(PA7_GPIO_Port, PA7_Pin, SET);
 		HAL_GPIO_WritePin(PA8_GPIO_Port, PA8_Pin, SET);
-
 		display7SEG(led_buffer[3]);
 		break;
 	default:
 		break;
 	}
 }
-

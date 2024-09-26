@@ -5,6 +5,7 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../Core/Src/clock.c \
 ../Core/Src/clock_buffer.c \
 ../Core/Src/control_7SEG.c \
 ../Core/Src/control_matrix.c \
@@ -18,6 +19,7 @@ C_SRCS += \
 ../Core/Src/system_stm32f1xx.c 
 
 OBJS += \
+./Core/Src/clock.o \
 ./Core/Src/clock_buffer.o \
 ./Core/Src/control_7SEG.o \
 ./Core/Src/control_matrix.o \
@@ -31,6 +33,7 @@ OBJS += \
 ./Core/Src/system_stm32f1xx.o 
 
 C_DEPS += \
+./Core/Src/clock.d \
 ./Core/Src/clock_buffer.d \
 ./Core/Src/control_7SEG.d \
 ./Core/Src/control_matrix.d \
