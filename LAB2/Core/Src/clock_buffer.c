@@ -35,5 +35,19 @@ void updateClockBuffer() {
     }
 }
 
+void clock() {
+    second++;
+    if (second >= 60) {
+        second = 0;
+        minute++;
+    }
+    if (minute >= 60) {
+        minute = 0;
+        hour++;
+    }
+    if (hour >= 24) {
+        hour = 0;
+    }
+}
 
 #endif /* SRC_CLOCK_BUFFER_C_ */

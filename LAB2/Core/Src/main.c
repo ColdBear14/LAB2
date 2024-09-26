@@ -99,8 +99,9 @@ int main(void) {
 	/* USER CODE BEGIN WHILE */
 
 	setTimer(0, 1000);
-	setTimer(1, 250);
-	setTimer(2, 1000);
+	setTimer(1, 1000);
+	setTimer(2, 250);
+	setTimer(3,1000);
 	while (1) {
 		/* USER CODE END WHILE */
 		if (timer_flag[0] == 1) {
@@ -108,13 +109,24 @@ int main(void) {
 			HAL_GPIO_TogglePin(PA4_GPIO_Port, PA4_Pin);
 			setTimer(0, 1000);
 		}
-		if (timer_flag[1] == 1) {
+		if(timer_flag[1] == 1){
+			clock();
+			updateClockBuffer();
+			setTimer(1, 1000);
+		}
+		if (timer_flag[2] == 1) {
 			update7SEG(index_led++);
 			if (index_led == MAX_LED)
 				index_led = 0;
-			setTimer(1, 250);
+			setTimer(2, 250);
 		}
-		/* USER CODE BEGIN 3 */
+		if(timer_flag[3] == 1)// control led matrix
+		{
+			updateLEDMatrix(index_led_matrix++);
+			if(index_led_matrix == MAX_LED_MATRIX) index_led_matrix = 0;
+			setTimer(3,100);
+		}
+		/*USER CODE BEGIN 3 */
 	}
 	/* USER CODE END 3 */
 }
