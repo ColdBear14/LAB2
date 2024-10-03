@@ -154,6 +154,7 @@ const int MAX_LED = 4;
 int index_led = 0;
 int led_buffer[4] = { 1, 2, 3, 4 };
 int hour, minute, second;
+
 void update7SEG(int index) {
 	switch (index) {
 	case 0:
@@ -249,8 +250,8 @@ int main(void) {
 	/* Infinite loop */
 	/* USER CODE BEGIN WHILE */
 
-	hour = 13;
-	minute = 6;
+	hour = 15;
+	minute = 8;
 	second = 50;
 	setTimer(0, 1000);
 	setTimer(1, 250);
