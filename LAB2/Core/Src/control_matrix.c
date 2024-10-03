@@ -12,7 +12,7 @@ int index_led_matrix = 0;
 uint8_t matrix_buffer[8] = {0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08};
 
 void displayMatrix(int row, int col) {
-    int shift = 1;
+
     if (row == 0) {
         HAL_GPIO_WritePin(PB8_GPIO_Port, PB8_Pin, GPIO_PIN_RESET);
         HAL_GPIO_WritePin(PB9_GPIO_Port, PB9_Pin, GPIO_PIN_SET);
