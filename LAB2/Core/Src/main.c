@@ -152,8 +152,27 @@ void display7SEG(int num) {
 }
 const int MAX_LED = 4;
 int index_led = 0;
-int led_buffer[4] = { 1, 2, 3, 4 };
+int led_buffer[4];
 int hour, minute, second;
+
+void updateClockBuffer() {
+	if (hour < 10) {
+		led_buffer[0] = 0;
+		led_buffer[1] = hour;
+	}
+	if (hour >= 10) {
+		led_buffer[0] = hour / 10;
+		led_buffer[1] = hour % 10;
+	}
+	if (minute < 10) {
+		led_buffer[2] = 0;
+		led_buffer[3] = minute;
+	}
+	if (minute >= 10) {
+		led_buffer[0] = minute / 10;
+		led_buffer[1] = minute % 10;
+	}
+}
 
 void update7SEG(int index) {
 	switch (index) {
@@ -195,24 +214,7 @@ void update7SEG(int index) {
 		break;
 	}
 }
-void updateClockBuffer() {
-	if (hour < 10) {
-		led_buffer[0] = 0;
-		led_buffer[1] = hour;
-	}
-	if (hour >= 10) {
-		led_buffer[0] = hour / 10;
-		led_buffer[1] = hour % 10;
-	}
-	if (minute < 10) {
-		led_buffer[2] = 0;
-		led_buffer[3] = minute;
-	}
-	if (minute >= 10) {
-		led_buffer[0] = minute / 10;
-		led_buffer[1] = minute % 10;
-	}
-}
+
 /* USER CODE END 0 */
 
 /**
@@ -264,6 +266,7 @@ int main(void) {
 			setTimer(0, 1000);
 		}
 		if (timer_flag[1] == 1) {
+			updateClockBuffer();
 			update7SEG(index_led++);
 			if (index_led == MAX_LED)
 				index_led = 0;
