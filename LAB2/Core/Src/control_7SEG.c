@@ -11,13 +11,9 @@
 
 void display7SEG(int num) {
 	if (num == 0) {
-		HAL_GPIO_WritePin(PB0_GPIO_Port, PB0_Pin, GPIO_PIN_RESET);
-		HAL_GPIO_WritePin(PB1_GPIO_Port, PB1_Pin, GPIO_PIN_RESET);
-		HAL_GPIO_WritePin(PB2_GPIO_Port, PB2_Pin, GPIO_PIN_RESET);
-		HAL_GPIO_WritePin(PB3_GPIO_Port, PB3_Pin, GPIO_PIN_RESET);
-		HAL_GPIO_WritePin(PB4_GPIO_Port, PB4_Pin, GPIO_PIN_RESET);
-		HAL_GPIO_WritePin(PB5_GPIO_Port, PB5_Pin, GPIO_PIN_RESET);
+
 		HAL_GPIO_WritePin(PB6_GPIO_Port, PB6_Pin, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOB, PB0_Pin|PB1_Pin|PB2_Pin|PB3_Pin|PB4_Pin|PB5_Pin, RESET);
 	}
 	if (num == 1) {
 		HAL_GPIO_WritePin(PB0_GPIO_Port, PB0_Pin, GPIO_PIN_SET);
