@@ -1,2 +1,4 @@
-control_matrix.c:14:6:displayMatrix	16	static
-control_matrix.c:172:6:updateLEDMatrix	16	static
+control_matrix.c:21:6:displayMatrix	16	static
+control_matrix.c:49:6:setCol	16	static
+control_matrix.c:60:6:setMatrix	8	static
+control_matrix.c:71:6:updateLEDMatrix	16	static

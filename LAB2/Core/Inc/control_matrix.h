@@ -14,7 +14,9 @@
 extern int index_led_matrix;
 extern uint8_t matrix_buffer [8];
 
-void updateLEDMatrix(int index);
-void displayMatrix(int row, int col);
+void displayMatrix(int row);
+void updateLEDMatrix(uint8_t index);
+void setCol(uint8_t value);
+void setMatrix();
 
 #endif /* INC_CONTROL_MATRIX_H_ */
