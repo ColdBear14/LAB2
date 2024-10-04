@@ -13,9 +13,11 @@
 
 extern int index_led_matrix;
 extern uint8_t matrix_buffer [8];
+extern uint8_t matrix_buffer_shift[8];
 
 void displayMatrix(int row);
-void updateLEDMatrix(uint8_t index);
+void updateLEDMatrix(int index);
+void shiftLeft(int shift);
 void setCol(uint8_t value);
 void setMatrix();
 

@@ -61,7 +61,7 @@ static void MX_TIM2_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+int shift =0;
 /* USER CODE END 0 */
 
 /**
@@ -126,7 +126,13 @@ int main(void) {
 		if(timer_flag[3] == 1)// control led matrix
 		{
 			updateLEDMatrix(index_led_matrix++);
-			if(index_led_matrix == MAX_LED_MATRIX) index_led_matrix = 0;
+			if(index_led_matrix == MAX_LED_MATRIX) {
+				index_led_matrix = 0;
+				shiftLeft(shift);
+				shift++;
+				if(shift >=8 ) shift =0;
+			}
+
 			setTimer(3,100);
 		}
 		/*USER CODE BEGIN 3 */
